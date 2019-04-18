@@ -6,6 +6,7 @@ from .handlers import start_session
 from .handlers import scan
 from .handlers import monitor
 from .handlers import reaver
+from .handlers import aircrack
 
 
 def setup_routes(app):
@@ -19,3 +20,4 @@ def setup_routes(app):
     app.router.add_post('/interface/channel', monitor.channel)
     app.router.add_post('/aireplay', aireplay.aireplay)
     app.router.add_post('/crack/reaver', reaver.reaver)
+    app.router.add_post('/crack/aircrack', aircrack.aircrack)
