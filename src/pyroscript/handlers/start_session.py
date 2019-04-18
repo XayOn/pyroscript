@@ -9,7 +9,7 @@ async def start_session(request):
     summary: Get a session id
     description: Get a session_id
     tags:
-    - "sessions"
+    - "session"
     consumes:
     - "application/json"
     produces:

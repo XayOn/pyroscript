@@ -35,7 +35,7 @@ This examples requires httpie and jq ( https://httpie.org/ and https://stedolan.
 
 Create a session::
 
-        $> SESSION_ID=$(http post http://localhost:8082/start_session|jq -r .session_id)
+        $> SESSION_ID=$(http get http://localhost:8082/start_session|jq -r .session_id)
 
 Get a list of wireless interfaces::
 
