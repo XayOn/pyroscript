@@ -1,5 +1,6 @@
 """Main app."""
 
+from contextlib import suppress
 import configparser
 import logging
 import uuid
@@ -26,6 +27,15 @@ async def log_middleware(request, handler):
     return await handler(request)
 
 
+@web.middleware
+async def allow_all_cors(request, handler):
+    response = await handler(request)
+    with suppress(Exception):
+        response.headers['Access-Control-Allow-Headers'] = '*'
+        response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
+
+
 def get_app(options):
     """Get app."""
     router = SwaggerRouter(swagger_ui='/swagger/')
@@ -33,6 +43,7 @@ def get_app(options):
     app = web.Application(
         router=router,
         middlewares=[
+            allow_all_cors,
             jsonify,
             SentryMiddleware(),
             log_middleware,
