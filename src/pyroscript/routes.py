@@ -23,3 +23,5 @@ def setup_routes(app):
     app.router.add_post('/crack/reaver', reaver.reaver)
     app.router.add_post('/crack/aircrack', aircrack.aircrack)
     app.router.add_post('/phising/wifiphiser', wifiphiser.wifiphiser)
+    # Add cors for every endpoint
+    app.router.set_cors(app)
